@@ -1,6 +1,12 @@
 import java.util.Scanner;
 
 public class Main {
+
+    /* Crea un programa que defina una variable
+    llamada puntuación con valor inicial 0. Luego,
+    modifica su valor tres veces y muestra el resultado
+    final.*/
+
     public static void main (String[] args){
         int puntos;
         puntos = 0;

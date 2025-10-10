@@ -1,6 +1,13 @@
 import java.util.Scanner;
 
 public class Main {
+
+    /*
+    Crea un programa que defina tres variables: nombre,
+    edad y ciudad. Asigna valores a cada una y muestra
+    su contenido en la consola.
+     */
+
     public static void main (String[] args){
         String name;
         int edad;
