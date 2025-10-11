@@ -1,4 +1,10 @@
+import conversiones.Celsius;
+import conversiones.Fahre;
+import conversiones.Kelvin;
+import conversiones.Rankine;
+
 import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args){
@@ -24,6 +30,11 @@ public class Main {
         System.out.println("Ingrese su valor:");
         val1 = scn.nextDouble();
 
+        Celsius cel = new Celsius();
+        Fahre fah = new Fahre();
+        Kelvin kel = new Kelvin();
+        Rankine ran = new Rankine();
+
         if (rptaTemp.equals("1")){
             System.out.println("A que unidad lo quiere convertir:" +
                     "\n1. Fahrenheit (°F)" +
@@ -32,11 +43,11 @@ public class Main {
             rptaConv = scn.next();
 
             if (rptaConv.equals("1")){
-
+                cel.fahrenheit(val1);
             } else if (rptaConv.equals("2")) {
-
+                cel.kelvin(val1);
             } else if (rptaConv.equals("3")) {
-
+                cel.rankine(val1);
             } else {
                 System.out.println("Ingresa un valor correcto");
                 System.exit(0);
@@ -50,11 +61,11 @@ public class Main {
             rptaConv = scn.next();
 
             if (rptaConv.equals("1")){
-
+                fah.celsius(val1);
             } else if (rptaConv.equals("2")) {
-
+                fah.kelvin(val1);
             } else if (rptaConv.equals("3")) {
-
+                fah.rankine(val1);
             } else {
                 System.out.println("Ingresa un valor correcto");
                 System.exit(0);
@@ -68,11 +79,11 @@ public class Main {
             rptaConv = scn.next();
 
             if (rptaConv.equals("1")){
-
+                kel.celsius(val1);
             } else if (rptaConv.equals("2")) {
-
+                kel.fahrenheit(val1);
             } else if (rptaConv.equals("3")) {
-
+                kel.rankine(val1);
             } else {
                 System.out.println("Ingresa un valor correcto");
                 System.exit(0);
@@ -86,11 +97,11 @@ public class Main {
             rptaConv = scn.next();
 
             if (rptaConv.equals("1")){
-
+                ran.celsius(val1);
             } else if (rptaConv.equals("2")) {
-
+                ran.fahrenheit(val1);
             } else if (rptaConv.equals("3")) {
-
+                ran.kelvin(val1);
             } else {
                 System.out.println("Ingresa un valor correcto");
                 System.exit(0);
