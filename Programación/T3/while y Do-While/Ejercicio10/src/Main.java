@@ -23,12 +23,10 @@ public class Main {
                     4. Historial de acciones
                     5. Cambiar pin
                     6. Salir
-                                     """);
+                                   \s""");
                 rpta = scr.nextInt();
                 switch (rpta){
-                    case 1->{
-                        System.out.printf("Saldo Actual: %.2f€ %n", saldo);
-                    }
+                    case 1-> System.out.printf("Saldo Actual: %.2f€ %n", saldo);
                     case 2->{
                         boolean repetirRetiro = true;
                         int cantidad;
@@ -39,7 +37,7 @@ public class Main {
                                 System.out.println("Presione 0 para salir.");
                                 cantidad = scr.nextInt();
                                 if (cantidad<=saldo && cantidad > 0){
-                                    saldo -= (double)cantidad;
+                                    saldo -= cantidad;
                                     retiros.add(cantidad);
                                     System.out.println("Retirando " + cantidad + "€...");
                                     repetirRetiro = false;
@@ -89,6 +87,7 @@ public class Main {
                             int max = Math.max(depositos.size(), retiros.size());
                             switch (rptaHistorial){
                                 case 1->{
+                                    System.out.println("Saldo actual: " + saldo + "€");
                                     System.out.printf("%-22s %d | %-22s %d%n",
                                             "Depósitos totales:", depositos.size(),
                                             "Retiros totales:", retiros.size());
@@ -110,19 +109,15 @@ public class Main {
                                         System.out.printf("%-12s %-4d -> %.2f€ %n", "Retiro: ", (i+1), (double)retiros.get(i));
                                     }
                                 }
-                                case 4->{
-                                    System.out.println("Saliendo del historial...");
-                                }
-                                default->{
-                                    System.out.println("Ingresa una opción válida");
-                                }
+                                case 4-> System.out.println("Saliendo del historial...");
+                                default-> System.out.println("Ingresa una opción válida");
                             }
                         } while (rptaHistorial != 4);
 
                     }
                     case 5->{
                         boolean cambiando = true;
-                        boolean cometioError = true;
+                        boolean cometioError;
                         if (validacion.validarAccion(pin)){
                             do{
                                 System.out.println("Ingrese su nuevo pin: (Press 0 para cancelar)");
@@ -130,10 +125,10 @@ public class Main {
                                 if (nuevoPin>999 && nuevoPin<=9999){
                                     do{
                                         System.out.println("""
-                                                Vuelva a introducir su nuevo pin: 
+                                               Vuelva a introducir su nuevo pin:\s
                                                 - Press 0 para regresar
                                                 - Press 1 para cancelar operación
-                                                """);
+                                               \s""");
                                         validarNuevoPin = scr.nextInt();
                                         if (validarNuevoPin == nuevoPin){
                                             System.out.println("Cambiaste tu pin.");
@@ -161,12 +156,8 @@ public class Main {
                             System.out.println("Se cancelo el cambio de pin.");
                         }
                     }
-                    case 6->{
-                        System.out.println("Cerrando Menú.");
-                    }
-                    default -> {
-                        System.out.println("Ingresa una opción válida");
-                    }
+                    case 6-> System.out.println("Cerrando Menú.");
+                    default -> System.out.println("Ingresa una opción válida");
                 }
             } while (rpta !=6);
         }
