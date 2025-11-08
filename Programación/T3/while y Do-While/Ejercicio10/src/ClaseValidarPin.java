@@ -22,4 +22,34 @@ public class ClaseValidarPin {
 
         return new boolean[]{pinIncorrecto,salir};
     }
+
+    public boolean validarAccion(int pinOriginal){
+        boolean pinCorrecto = false, seguirPidiendo = true;
+        Scanner scr = new Scanner(System.in);
+        int validacion;
+        int intentos = 4;
+        do {
+            System.out.println("Introduce tu pin actual:");
+            System.out.println("Press 0 para cancelar operación");
+            validacion = scr.nextInt();
+            if (validacion == pinOriginal){
+                System.out.println("Ingresando...");
+                seguirPidiendo = false;
+                pinCorrecto = true;
+            } else if (validacion == 0){
+                System.out.println("Saliendo...");
+                pinCorrecto = false;
+                seguirPidiendo = false;
+            } else {
+                System.out.println("Pin incorrecto. Intente nuevamente.");
+                System.out.println("Intentos restantes " + (intentos-1));
+                intentos--;
+                if (intentos == 0){
+                    pinCorrecto = false;
+                    seguirPidiendo = false;
+                }
+            }
+        }while (seguirPidiendo);
+        return pinCorrecto;
+    }
 }

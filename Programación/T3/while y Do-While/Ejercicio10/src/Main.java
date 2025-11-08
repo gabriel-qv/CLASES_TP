@@ -33,19 +33,24 @@ public class Main {
                         int cantidad;
                         do{
                             System.out.println("--- RETIRE DINERO ---");
-                            System.out.println("Saldo actual: " + saldo + "€");
-                            System.out.println("Presione 0 para salir.");
-                            cantidad = scr.nextInt();
-                            if (cantidad<=saldo && cantidad > 0){
-                                saldo -= (double)cantidad;
-                                retiros.add(cantidad);
-                                System.out.println("Retirando " + cantidad + "€...");
-                                repetirRetiro = false;
-                            } else if (cantidad == 0) {
-                                System.out.println("Cancelando retiro...");
-                                repetirRetiro = false;
+                            if (validacion.validarAccion(pin)){
+                                System.out.println("Saldo actual: " + saldo + "€");
+                                System.out.println("Presione 0 para salir.");
+                                cantidad = scr.nextInt();
+                                if (cantidad<=saldo && cantidad > 0){
+                                    saldo -= (double)cantidad;
+                                    retiros.add(cantidad);
+                                    System.out.println("Retirando " + cantidad + "€...");
+                                    repetirRetiro = false;
+                                } else if (cantidad == 0) {
+                                    System.out.println("Cancelando retiro...");
+                                    repetirRetiro = false;
+                                } else {
+                                    System.out.println("Cantidad inválida.");
+                                }
                             } else {
-                                System.out.println("Cantidad inválida.");
+                                System.out.println("Cancelando operación...");
+                                repetirRetiro = false;
                             }
                         } while (repetirRetiro);
                     }
