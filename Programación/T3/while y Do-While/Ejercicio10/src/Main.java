@@ -13,6 +13,7 @@ public class Main {
         if (!retornoDeClaseValidar[1]){
             ArrayList<Integer> retiros = new ArrayList<>();
             ArrayList<Double> depositos = new ArrayList<>();
+            int nuevoPin, validarNuevoPin;
             do{
                 System.out.println("""
                     ---- MENÚ - CAJERO AUTOMÁTICO -----
@@ -120,7 +121,45 @@ public class Main {
 
                     }
                     case 5->{
-                        System.out.println("Cer Menú.");
+                        boolean cambiando = true;
+                        boolean cometioError = true;
+                        if (validacion.validarAccion(pin)){
+                            do{
+                                System.out.println("Ingrese su nuevo pin: (Press 0 para cancelar)");
+                                nuevoPin = scr.nextInt();
+                                if (nuevoPin>999 && nuevoPin<=9999){
+                                    do{
+                                        System.out.println("""
+                                                Vuelva a introducir su nuevo pin: 
+                                                - Press 0 para regresar
+                                                - Press 1 para cancelar operación
+                                                """);
+                                        validarNuevoPin = scr.nextInt();
+                                        if (validarNuevoPin == nuevoPin){
+                                            System.out.println("Cambiaste tu pin.");
+                                            pin = validarNuevoPin;
+                                            cambiando = false;
+                                            cometioError = false;
+                                        } else if (validarNuevoPin == 0) {
+                                            cometioError = false;
+                                        } else if (validarNuevoPin == 1) {
+                                            cometioError = false;
+                                            cambiando = false;
+                                        } else {
+                                            System.out.println("El pin no coincide al modificado.");
+                                            cometioError = true;
+                                        }
+                                    } while (cometioError);
+                                } else if (nuevoPin == 0){
+                                    cambiando = false;
+                                } else {
+                                    System.out.println("Introduce un pin válido.");
+                                }
+                            } while (cambiando);
+                            System.out.println("Regresando...");
+                        } else {
+                            System.out.println("Se cancelo el cambio de pin.");
+                        }
                     }
                     case 6->{
                         System.out.println("Cerrando Menú.");
@@ -130,8 +169,9 @@ public class Main {
                     }
                 }
             } while (rpta !=6);
-        } else {
-            System.out.println("Fin de programa...");
         }
+
+        System.out.println("Fin de programa...");
+
     }
 }
