@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         double saldo = 1000;
-        int rpta;
+        int rpta, rptaHistorial;
         int pin = 1234;
         Scanner scr = new Scanner(System.in);
         ClaseValidarPin validacion = new ClaseValidarPin();
@@ -76,27 +76,47 @@ public class Main {
                         } while (repetirDeposito);
                     }
                     case 4->{
-                        System.out.println("""
+                        do{
+                            System.out.println("""
                                 --- MENÚ - HISTORIAL ---
                                 1. Historial completo
                                 2. Historial depositos
                                 3. Historial retiros
+                                4. Regresar
                                 """);
-                        rpta = scr.nextInt();
-                        switch (rpta){
-                            case 1->{
-                                System.out.println(" 4");
+                            rptaHistorial = scr.nextInt();
+                            int max = Math.max(depositos.size(), retiros.size());
+                            switch (rptaHistorial){
+                                case 1->{
+                                    System.out.printf("%-22s %d | %-22s %d%n",
+                                            "Depósitos totales:", depositos.size(),
+                                            "Retiros totales:", retiros.size());
+                                    for (int i = 0; i < max ; i++) {
+                                        String dep = i < depositos.size() ? String.format("%.2f€", depositos.get(i)) : "";
+                                        String ret = i < retiros.size() ? String.format("%.2f€", (double)retiros.get(i)) : "";
+                                        System.out.printf("%-24s | %-24s %n",dep,ret);
+                                    }
+                                }
+                                case 2->{
+                                    System.out.printf("Depositos totales: %d %n", depositos.size());
+                                    for (int i = 0; i < depositos.size() ; i++) {
+                                        System.out.printf("%-12s %-4d -> %.2f€ %n", "Depósito: ", (i+1), depositos.get(i));
+                                    }
+                                }
+                                case 3->{
+                                    System.out.printf("Retiros totales: %d %n", retiros.size());
+                                    for (int i = 0; i < retiros.size() ; i++) {
+                                        System.out.printf("%-12s %-4d -> %.2f€ %n", "Retiro: ", (i+1), (double)retiros.get(i));
+                                    }
+                                }
+                                case 4->{
+                                    System.out.println("Saliendo del historial...");
+                                }
+                                default->{
+                                    System.out.println("Ingresa una opción válida");
+                                }
                             }
-                            case 2->{
-                                System.out.println(" 1");
-                            }
-                            case 3->{
-                                System.out.println(" 3");
-                            }
-                            default->{
-                                System.out.println(" ");
-                            }
-                        }
+                        } while (rptaHistorial != 4);
 
                     }
                     case 5->{
