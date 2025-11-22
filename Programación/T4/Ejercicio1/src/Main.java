@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //escribe el metodo correspondiente al ejercicio que quieres ver
+        ejercicio4();
     }
 
     public static void ejercicio1(){
